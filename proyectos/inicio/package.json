@@ -1,10 +1,10 @@
 {
-  "name": "react-18",
+  "name": "inicio",
   "private": true,
   "version": "0.0.0",
   "type": "module", 
   "scripts": {
-    "dev": "bunx --bun vite",
+    "dev": "bunx --bun vite --port 3000",
     "build": "bunx --bun vite build",
     "preview": "bunx --bun vite preview"
   },

@@ -2,6 +2,18 @@
   "name": "curso-react-18",
   "module": "index.ts",
   "type": "module",
+  "workspaces": [
+    "proyectos/*"
+  ],
+  "scripts": {
+    "dev": "bun run --filter '*' dev",
+    "build": "bun run --filter '*' build",
+    "preview": "bun run --filter '*' preview",
+    "lint": "eslint .",
+    "game-hub:dev": "bun run --filter 'game-hub' dev",
+    "game-hub:build": "bun run --filter 'game-hub' build",
+    "game-hub:preview": "bun run --filter 'game-hub' preview"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "react": "^18.3.1",
