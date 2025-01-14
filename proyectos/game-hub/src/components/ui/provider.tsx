@@ -1,10 +1,11 @@
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
-import { ThemeProvider } from "next-themes";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import theme from "@/theme";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ChakraProvider value={defaultSystem}>
-      <ThemeProvider>{children}</ThemeProvider>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      {children}
     </ChakraProvider>
   );
 };
