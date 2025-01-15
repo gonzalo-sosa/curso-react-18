@@ -25,7 +25,9 @@ export interface Ratings {
   [key: string]: number;
 }
 
-export interface AddedByStatus {}
+export interface AddedByStatus {
+  [key: string]: number;
+}
 
 export interface EsrbRating {
   id: number;

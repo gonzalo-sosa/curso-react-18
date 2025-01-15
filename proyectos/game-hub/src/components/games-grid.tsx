@@ -3,11 +3,16 @@ import GameCard from './game-card';
 import GameCardSkeleton from './game-card-skeleton';
 import GameCardContainer from './game-card-container';
 import useGames from '@/hooks/useGames';
+import { Genre } from '@/types/genre';
 
 const MAX_SKELETONS_TO_SHOW = 6;
 
-const GamesGrid = () => {
-  const { games, error, isLoading } = useGames();
+interface GamesGridProps {
+  selectedGenre: Genre | null;
+}
+
+const GamesGrid = ({ selectedGenre }: GamesGridProps) => {
+  const { games, error, isLoading } = useGames(selectedGenre);
 
   if (error) return <Text>{error}</Text>;
   if (!isLoading && games.length === 0) return <Text>No games found</Text>;
