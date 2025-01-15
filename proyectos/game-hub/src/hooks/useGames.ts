@@ -1,4 +1,4 @@
-import gamesService from "@/services/gamesService";
+import gamesService from "@/services/games-service";
 import { ApiResponse } from "@/types/api";
 import { Game } from "@/types/games";
 import { useEffect, useState } from "react";

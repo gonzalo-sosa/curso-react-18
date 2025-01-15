@@ -1,4 +1,4 @@
-import { create } from "./httpService";
+import { create } from "./http-service";
 import config from "@/config";
 
 export default create(
