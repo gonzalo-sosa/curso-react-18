@@ -9,7 +9,7 @@ const useGenres = () => {
     error,
     isLoading,
     setError,
-  } = useData<Genre>(genresService);
+  } = useData<Genre>(genresService, []);
 
   return { genres, error, isLoading, setGenres, setError };
 };
