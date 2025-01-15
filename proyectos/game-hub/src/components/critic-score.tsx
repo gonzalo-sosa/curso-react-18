@@ -5,7 +5,7 @@ interface CriticScoreProps {
   score: Game["metacritic"];
 }
 
-export const CriticScore = ({ score }: CriticScoreProps) => {
+const CriticScore = ({ score }: CriticScoreProps) => {
   const color = score > 75 ? "green" : score > 50 ? "yellow" : "red";
 
   return (
@@ -19,3 +19,5 @@ export const CriticScore = ({ score }: CriticScoreProps) => {
     </Badge>
   );
 };
+
+export default CriticScore;

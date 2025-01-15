@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const { response, cancel } = gamesService.getAll<ApiResponse<Game>>();
 
+    setIsLoading(true);
     response
       .then(({ results: data }) => {
         setGames(data);

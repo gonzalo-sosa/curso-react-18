@@ -1,12 +1,12 @@
 import { Game } from "@/types/games";
 import { Card, CardBody, Heading, Image, HStack } from "@chakra-ui/react";
-import { PlatformIconList } from "./platform-icon-list";
-import { CriticScore } from "./critic-score";
+import PlatformIconList from "./platform-icon-list";
+import CriticScore from "./critic-score";
 import { getCroppedImageUrl } from "@/services/image-service";
 
 interface GameCardProps extends Game {}
 
-export const GameCard = ({
+const GameCard = ({
   name,
   background_image,
   parent_platforms,
@@ -27,3 +27,5 @@ export const GameCard = ({
     </Card>
   );
 };
+
+export default GameCard;

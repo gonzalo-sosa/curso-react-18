@@ -1,6 +1,6 @@
 import { Game } from "@/types/games";
 import { SimpleGrid } from "@chakra-ui/react";
-import { GameCard } from "./game-card";
+import GameCard from "./game-card";
 
 interface GamesGridProps {
   games: Game[];
