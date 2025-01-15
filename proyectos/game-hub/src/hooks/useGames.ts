@@ -1,24 +1,22 @@
 import { Game } from '@/types/games';
 import gamesService from '@/services/games-service';
 import useData from './useData';
+import { Platform } from '@/types/platform';
 import { Genre } from '@/types/genre';
 
-const useGames = (selectedGenre: Genre | null) => {
-  let params = null;
-  if (selectedGenre) {
-    params = new URLSearchParams();
-    params.append('genres', selectedGenre.id.toString());
-  }
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null,
+) => {
+  const urlParams = new URLSearchParams();
+  if (selectedGenre) urlParams.append('genres', selectedGenre.id.toString());
+  if (selectedPlatform)
+    urlParams.append('platforms', selectedPlatform.id.toString());
 
-  const {
-    data: games,
-    setData: setGames,
-    error,
-    isLoading,
-    setError,
-  } = useData<Game>(gamesService(params), [selectedGenre?.id]);
-
-  return { games, error, isLoading, setGames, setError };
+  return useData<Game>(gamesService(urlParams), [
+    selectedGenre?.id,
+    selectedPlatform?.id,
+  ]);
 };
 
 export default useGames;

@@ -1,5 +1,6 @@
 const basicFetch = <T>(
   endpoint: string,
+  // eslint-disable-next-line no-undef
   init?: RequestInit,
   errorMessage = '',
 ) =>

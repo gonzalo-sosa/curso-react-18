@@ -1,16 +1,9 @@
 import { create } from './http-service';
 import config from '@/config';
 
-const gamesService = (params: URLSearchParams | null) => {
-  const endpoint = new URL(
-    'https://api.rawg.io/api/games' + `?key=${config.api_key}`,
-  );
-
-  if (params) {
-    params.entries().forEach(([key, value]) => {
-      endpoint.searchParams.append(key, value);
-    });
-  }
+const gamesService = (params?: URLSearchParams) => {
+  const endpoint = new URL('https://api.rawg.io/api/games');
+  if (params) endpoint.search = `?key=${config.api_key}&${params.toString()}`;
 
   return create(endpoint.toString());
 };
