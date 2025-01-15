@@ -1,7 +1,7 @@
 const basicFetch = <T>(
   endpoint: string,
   init?: RequestInit,
-  errorMessage = "",
+  errorMessage = '',
 ) =>
   fetch(endpoint, init).then((res) => {
     if (!res.ok) throw new Error(errorMessage);
@@ -30,7 +30,7 @@ class HttpService {
     return basicFetch<T>(
       this.endpoint,
       {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify(entity),
       },
       `Failed to create ${entity.id}`,
@@ -41,7 +41,7 @@ class HttpService {
     return basicFetch(
       this.endpoint + `/${id}`,
       {
-        method: "DELETE",
+        method: 'DELETE',
       },
       `Failed to delete ${id}`,
     );
@@ -51,7 +51,7 @@ class HttpService {
     return basicFetch(
       this.endpoint + `/${entity.id}`,
       {
-        method: "PATCH",
+        method: 'PATCH',
         body: JSON.stringify(entity),
       },
       `Failed to update ${entity.id}`,

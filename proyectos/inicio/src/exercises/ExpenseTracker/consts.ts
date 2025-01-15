@@ -1,7 +1,7 @@
-import { CategoriesType } from "./types";
+import { CategoriesType } from './types';
 
 export const CATEGORIES: CategoriesType = [
-  "Groceries",
-  "Utilities",
-  "Entertainment",
+  'Groceries',
+  'Utilities',
+  'Entertainment',
 ] as const;

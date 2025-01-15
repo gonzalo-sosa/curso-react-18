@@ -1,13 +1,14 @@
-import { CATEGORIES } from "./consts";
+import { ChangeEvent } from 'react';
+import { CATEGORIES } from './consts';
 
 interface Props {
-  onSelectCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onSelectCategory: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const ExpenseFilter = ({ onSelectCategory }: Props) => {
   return (
     <select onChange={onSelectCategory} className="form-select">
-      <option key={"all"} value="All">
+      <option key={'all'} value="All">
         All Categories
       </option>
       {CATEGORIES.map((category) => (

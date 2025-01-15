@@ -1,6 +1,6 @@
-import { ExpenseType } from "./types";
+import { ExpenseType } from './types';
 
-type expenseId = ExpenseType["id"];
+type expenseId = ExpenseType['id'];
 
 interface Props {
   expenses: ExpenseType[];
@@ -10,7 +10,7 @@ interface Props {
 const ExpenseList = ({ expenses, onDelete }: Props) => {
   if (expenses.length === 0) return null;
 
-  const headers = Object.keys(expenses[0]).filter((key) => key !== "id");
+  const headers = Object.keys(expenses[0]).filter((key) => key !== 'id');
 
   return (
     <table className="mt-2 table table-bordered">

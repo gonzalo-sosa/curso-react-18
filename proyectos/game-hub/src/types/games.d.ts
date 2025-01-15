@@ -21,7 +21,9 @@ export interface Game {
   parent_platforms: { platform: Platform2 }[];
 }
 
-export interface Ratings {}
+export interface Ratings {
+  [key: string]: number;
+}
 
 export interface AddedByStatus {}
 

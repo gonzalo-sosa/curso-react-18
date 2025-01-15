@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 type Props = {
   heading: string;
@@ -19,7 +19,7 @@ const getMessage = (items: string[]) =>
   items.length === 0 && <p>Please add an item</p>;
 
 const getItemClassName = (index: number, activeIndex = 0) =>
-  index === activeIndex ? "list-group-item active" : "list-group-item";
+  index === activeIndex ? 'list-group-item active' : 'list-group-item';
 
 const ListGroup = ({ heading, items, onSelectItem, activeItem = 0 }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState(activeItem);

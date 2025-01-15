@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { ExpenseType } from "./types";
-import AddExpenseForm from "./AddExpenseForm";
-import ExpenseFilter from "./ExpenseFilter";
-import ExpenseList from "./ExpenseList";
+import { useState } from 'react';
+import { ExpenseType } from './types';
+import AddExpenseForm from './AddExpenseForm';
+import ExpenseFilter from './ExpenseFilter';
+import ExpenseList from './ExpenseList';
 
 function ExpenseTracker() {
   const [listOfExpenses, setListOfExpense] = useState<ExpenseType[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const visibleExpenses =
-    selectedCategory !== "All"
+    selectedCategory !== 'All'
       ? listOfExpenses.filter(
           (expense) => expense.category === selectedCategory,
         )

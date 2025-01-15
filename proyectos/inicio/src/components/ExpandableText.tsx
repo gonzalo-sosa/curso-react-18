@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 interface ExpandableTextProps {
   children: string;
@@ -13,13 +13,13 @@ export default function ExpandableText({
 
   if (children.length <= maxChars) return <p>{children}</p>;
 
-  const text = isExpanded ? children : children.substring(0, maxChars) + "...";
+  const text = isExpanded ? children : children.substring(0, maxChars) + '...';
 
   return (
     <p>
       {text}
       <button onClick={() => setIsExpanded(!isExpanded)}>
-        {isExpanded ? "Ocultar" : "Mostrar"}
+        {isExpanded ? 'Ocultar' : 'Mostrar'}
       </button>
     </p>
   );

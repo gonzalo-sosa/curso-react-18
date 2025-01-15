@@ -1,13 +1,13 @@
-import { useForm } from "react-hook-form";
-import type { FieldValues } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import type { FieldValues } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const schema = z.object({
-  name: z.string().min(3, { message: "Name must be at least 3 characters" }),
+  name: z.string().min(3, { message: 'Name must be at least 3 characters' }),
   age: z
-    .number({ invalid_type_error: "Age field is required" })
-    .min(18, { message: "Age must be at least 18 years old" }),
+    .number({ invalid_type_error: 'Age field is required' })
+    .min(18, { message: 'Age must be at least 18 years old' }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -30,7 +30,7 @@ const Form = () => {
           Name
         </label>
         <input
-          {...register("name")}
+          {...register('name')}
           id="name"
           type="text"
           className="form-control"
@@ -42,7 +42,7 @@ const Form = () => {
           Age
         </label>
         <input
-          {...register("age", { valueAsNumber: true })}
+          {...register('age', { valueAsNumber: true })}
           id="age"
           type="number"
           className="form-control"

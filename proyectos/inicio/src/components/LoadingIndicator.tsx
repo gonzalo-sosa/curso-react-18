@@ -1,5 +1,5 @@
-import postService from "../services/postService";
-import usePosts, { Post } from "../hooks/usePosts";
+import postService from '../services/postService';
+import usePosts, { Post } from '../hooks/usePosts';
 
 export const LoadingIndicator = () => {
   const { posts, error, isLoading, setPosts, setError } = usePosts();
@@ -20,8 +20,8 @@ export const LoadingIndicator = () => {
     const originalPosts = [...posts];
     const dummyPost = {
       id: String(posts.length + 1),
-      title: "New Post",
-      body: "This is a new post",
+      title: 'New Post',
+      body: 'This is a new post',
     };
 
     setPosts([dummyPost, ...posts]);

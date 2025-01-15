@@ -1,6 +1,6 @@
-import { Game } from "@/types/games";
-import gamesService from "@/services/games-service";
-import useData from "./useData";
+import { Game } from '@/types/games';
+import gamesService from '@/services/games-service';
+import useData from './useData';
 
 const useGames = () => {
   const {

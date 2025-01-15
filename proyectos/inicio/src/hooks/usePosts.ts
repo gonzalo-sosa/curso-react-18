@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import postService from "../services/postService";
+import { useEffect, useState } from 'react';
+import postService from '../services/postService';
 export type Post = { id: string; title: string; body: string };
 
 const usePosts = () => {
@@ -16,7 +16,7 @@ const usePosts = () => {
         setIsLoading(false);
       })
       .catch((error) => {
-        if (error.name === "AbortError") return;
+        if (error.name === 'AbortError') return;
         setError(error.message);
         setIsLoading(false);
       });

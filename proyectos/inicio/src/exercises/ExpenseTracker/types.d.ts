@@ -1,4 +1,4 @@
-export type CategoriesType = ["Groceries", "Utilities", "Entertainment"];
+export type CategoriesType = ['Groceries', 'Utilities', 'Entertainment'];
 
 export type ExpenseType = {
   id: number;

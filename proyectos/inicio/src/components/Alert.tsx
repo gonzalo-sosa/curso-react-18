@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { MouseEvent, ReactNode } from 'react';
 
 type Props = {
   color?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark";
-  children?: React.ReactNode;
-  onClose: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'info'
+    | 'light'
+    | 'dark';
+  children?: ReactNode;
+  onClose: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const Alert = ({ color = "primary", children, onClose }: Props) => {
+const Alert = ({ color = 'primary', children, onClose }: Props) => {
   return (
     <div
       className={`alert alert-${color} alert-dismissible fade show`}

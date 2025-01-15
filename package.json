@@ -10,6 +10,9 @@
     "build": "bun run --filter '*' build",
     "preview": "bun run --filter '*' preview",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --check .",
+    "format:write": "prettier --write .",
     "game-hub:dev": "bun run --filter 'game-hub' dev",
     "game-hub:build": "bun run --filter 'game-hub' build",
     "game-hub:preview": "bun run --filter 'game-hub' preview"
@@ -23,11 +26,15 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "@eslint/js": "^9.17.0",
+    "@types/bun": "latest",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
@@ -35,9 +42,6 @@
     "prettier": "^3.4.2",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.18.2",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react-swc": "^3.5.0",
     "vite": "^6.0.5"
   }
 }

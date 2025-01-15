@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { Button } from "./Button";
+import { FormEvent, useState } from 'react';
+import { Button } from './Button';
 
 // Se vuelve a renderizar el componente cada vez que cambia el estado
 export const Form = () => {
   const [person, setPerson] = useState({
-    name: "",
-    age: "",
+    name: '',
+    age: '',
   });
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log(person);

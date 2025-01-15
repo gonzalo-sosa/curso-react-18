@@ -1,16 +1,16 @@
-import { useRef } from "react";
-import { Button } from "./Button";
+import { FormEvent, useRef } from 'react';
+import { Button } from './Button';
 
 // Sólo se renderiza una vez
 export const Form = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const ageRef = useRef<HTMLInputElement>(null);
   const person = {
-    name: "",
+    name: '',
     age: 0,
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!nameRef.current || !ageRef.current) {

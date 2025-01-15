@@ -1,12 +1,12 @@
-import { useState } from "react";
-import "./App.css";
-import Alert from "./components/Alert";
-import { Button } from "./components/Button";
-import ListGroup from "./components/ListGroup";
-import ExpandableText from "./components/ExpandableText";
-import Form from "./components/Form-schema";
-import ExpenseTracker from "./exercises/ExpenseTracker/ExpenseTracker";
-import { LoadingIndicator } from "./components/LoadingIndicator";
+import { useState } from 'react';
+import './App.css';
+import Alert from './components/Alert';
+import { Button } from './components/Button';
+import ListGroup from './components/ListGroup';
+import ExpandableText from './components/ExpandableText';
+import Form from './components/Form-schema';
+import ExpenseTracker from './exercises/ExpenseTracker/ExpenseTracker';
+import { LoadingIndicator } from './components/LoadingIndicator';
 
 function App() {
   const [alertVisible, setAlertVisibility] = useState(false);
@@ -17,7 +17,7 @@ function App() {
 
       <ListGroup
         heading="My list"
-        items={["An item", "A second item", "A third item"]}
+        items={['An item', 'A second item', 'A third item']}
         onSelectItem={(item) => console.log(item)}
       />
       {alertVisible && (

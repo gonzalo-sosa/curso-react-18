@@ -1,8 +1,8 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
-import GameCard from "./game-card";
-import GameCardSkeleton from "./game-card-skeleton";
-import GameCardContainer from "./game-card-container";
-import useGames from "@/hooks/useGames";
+import { SimpleGrid, Text } from '@chakra-ui/react';
+import GameCard from './game-card';
+import GameCardSkeleton from './game-card-skeleton';
+import GameCardContainer from './game-card-container';
+import useGames from '@/hooks/useGames';
 
 const MAX_SKELETONS_TO_SHOW = 6;
 
@@ -19,9 +19,9 @@ const GamesGrid = () => {
   return (
     <SimpleGrid
       columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-      padding={"10px"}
+      padding={'10px'}
       spacing={10}
-      justifyItems={"center"}
+      justifyItems={'center'}
     >
       {isLoading &&
         skeletons.map((skeleton) => (

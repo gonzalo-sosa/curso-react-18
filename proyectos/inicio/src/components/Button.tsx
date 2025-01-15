@@ -1,20 +1,21 @@
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  type?: "button" | "submit" | "reset";
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  type?: 'button' | 'submit' | 'reset';
   color?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark";
-  children?: React.ReactNode;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'danger'
+    | 'warning'
+    | 'info'
+    | 'light'
+    | 'dark';
+  children?: ReactNode;
 }
 export const Button = ({
-  type = "button",
-  color = "primary",
+  type = 'button',
+  color = 'primary',
   children,
   onClick,
   ...rest

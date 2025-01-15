@@ -1,6 +1,6 @@
-import { ApiResponse } from "@/types/api";
-import { useEffect, useState } from "react";
-import { create } from "@/services/http-service";
+import { ApiResponse } from '@/types/api';
+import { useEffect, useState } from 'react';
+import { create } from '@/services/http-service';
 
 const useData = <T>(service: ReturnType<typeof create>) => {
   const [data, setData] = useState<T[]>([]);
@@ -17,7 +17,7 @@ const useData = <T>(service: ReturnType<typeof create>) => {
         setIsLoading(false);
       })
       .catch((error) => {
-        if (error.name === "AbortError") return;
+        if (error.name === 'AbortError') return;
         setError(error.message);
         setIsLoading(false);
       });
