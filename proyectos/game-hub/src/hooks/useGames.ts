@@ -1,22 +1,15 @@
 import { Game } from '@/types/games';
 import gamesService from '@/services/games-service';
 import useData from './useData';
-import { Platform } from '@/types/platform';
-import { Genre } from '@/types/genre';
+import { GameQuery } from '@/types/query';
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null,
-) => {
+const useGames = (gameQuery: GameQuery) => {
   const urlParams = new URLSearchParams();
-  if (selectedGenre) urlParams.append('genres', selectedGenre.id.toString());
-  if (selectedPlatform)
-    urlParams.append('platforms', selectedPlatform.id.toString());
+  Object.entries(gameQuery).forEach(([key, value]) => {
+    if (value) urlParams.append(key, value.id);
+  });
 
-  return useData<Game>(gamesService(urlParams), [
-    selectedGenre?.id,
-    selectedPlatform?.id,
-  ]);
+  return useData<Game>(gamesService(urlParams), [gameQuery]);
 };
 
 export default useGames;
