@@ -1,30 +1,15 @@
-import genresService from "@/services/genres-service";
-import { ApiResponse } from "@/types/api";
 import { Genre } from "@/types/genre";
-import { useEffect, useState } from "react";
+import genresService from "@/services/genres-service";
+import useData from "./useData";
 
 const useGenres = () => {
-  const [genres, setGenres] = useState<Genre[]>([]);
-  const [error, setError] = useState<null | string>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    const { response, cancel } = genresService.getAll<ApiResponse<Genre>>();
-
-    response
-      .then(({ results: data }) => {
-        setGenres(data);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        if (error.name === "AbortError") return;
-        setError(error.message);
-        setIsLoading(false);
-      });
-
-    return () => cancel();
-  }, []);
+  const {
+    data: genres,
+    setData: setGenres,
+    error,
+    isLoading,
+    setError,
+  } = useData<Genre>(genresService);
 
   return { genres, error, isLoading, setGenres, setError };
 };
