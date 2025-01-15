@@ -9,9 +9,9 @@ const useGames = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const { response, cancel } = gamesService.getAll<ApiResponse<Game>>();
 
-    setIsLoading(true);
     response
       .then(({ results: data }) => {
         setGames(data);
