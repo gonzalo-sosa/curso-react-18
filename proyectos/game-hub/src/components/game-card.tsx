@@ -13,7 +13,7 @@ const GameCard = ({
   metacritic,
 }: GameCardProps) => {
   return (
-    <Card borderRadius={10} overflow={"hidden"}>
+    <Card width={"300px"} borderRadius={10} overflow={"hidden"}>
       <Image src={getCroppedImageUrl(background_image, 600, 400)} />
       <CardBody>
         <Heading fontSize={"2xl"}>{name}</Heading>
