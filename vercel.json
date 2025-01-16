@@ -1,20 +1,27 @@
 {
   "version": 2,
+  "workspaceJson": true,
   "builds": [
     {
+      "src": "package.json",
+      "use": "@vercel/node"
+    },
+    {
       "src": "proyectos/game-hub/package.json",
-      "use": "@vercel/node",
-      "config": {
-        "buildCommand": "bun game-hub:build",
-        "outputDirectory": "dist"
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/",
+      "dest": "/proyectos/game-hub"
+    },
     {
       "src": "/(.*)",
       "dest": "/proyectos/game-hub/$1"
     }
   ],
-  "installCommand": "bun game-hub:install"
+  "installCommand": "bun game-hub:install",
+  "buildCommand": "bun game-hub:build",
+  "outputDirectory": "proyectos/game-hub/dist"
 }
