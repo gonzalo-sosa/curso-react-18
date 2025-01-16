@@ -4,5 +4,7 @@ export const getCroppedImageUrl = (
   height: number,
   target = 'media/',
 ) => {
+  if (!url) return '';
+
   return url.replace(target, `${target}crop/${width}/${height}/`);
 };
