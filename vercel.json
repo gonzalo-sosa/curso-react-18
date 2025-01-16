@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "workspaceJson": true,
   "builds": [
     {
       "src": "package.json",
