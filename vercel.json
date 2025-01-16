@@ -1,23 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "proyectos/game-hub/package.json",
-      "use": "@vercel/node"
-    }
-  ],
   "env": {
     "NODE_PATH": "./node_modules"
   },
   "routes": [
-    {
-      "src": "/",
-      "dest": "/proyectos/game-hub"
-    },
     {
       "src": "/(.*)",
       "dest": "/proyectos/game-hub/$1"
