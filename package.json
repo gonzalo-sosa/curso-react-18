@@ -15,7 +15,9 @@
     "format:write": "prettier --write .",
     "game-hub:dev": "bun run --filter 'game-hub' dev",
     "game-hub:build": "bun run --filter 'game-hub' build",
-    "game-hub:preview": "bun run --filter 'game-hub' preview"
+    "game-hub:preview": "bun run --filter 'game-hub' preview",
+    "install:bun": "bun install",
+    "vercel-build": "bun run install:bun && bun run game-hub:build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
