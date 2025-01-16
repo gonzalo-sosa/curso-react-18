@@ -6,6 +6,7 @@ import { useState } from 'react';
 import PlatformSelector from './components/platform-selector';
 import { GameQuery } from './types/query';
 import SortSelector from './components/sort-selector';
+import GameHeading from './components/game-heading';
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
@@ -37,22 +38,25 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area={'main'}>
-        <Flex paddingLeft={2} marginBottom={5}>
-          <Box marginRight={5}>
-            <PlatformSelector
-              selectedPlatform={gameQuery.parent_platforms}
-              onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, parent_platforms: platform })
+        <Box paddingLeft={2}>
+          <GameHeading gameQuery={gameQuery} />
+          <Flex marginBottom={5}>
+            <Box marginRight={5}>
+              <PlatformSelector
+                selectedPlatform={gameQuery.parent_platforms}
+                onSelectPlatform={(platform) =>
+                  setGameQuery({ ...gameQuery, parent_platforms: platform })
+                }
+              />
+            </Box>
+            <SortSelector
+              selectedSortOrder={gameQuery.ordering}
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery({ ...gameQuery, ordering: sortOrder })
               }
             />
-          </Box>
-          <SortSelector
-            selectedSortOrder={gameQuery.ordering}
-            onSelectSortOrder={(sortOrder) =>
-              setGameQuery({ ...gameQuery, ordering: sortOrder })
-            }
-          />
-        </Flex>
+          </Flex>
+        </Box>
         <GamesGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
