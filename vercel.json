@@ -1,0 +1,17 @@
+{
+  "builds": [
+    {
+      "src": "proyectos/game-hub/package.json",
+      "use": "@vercel/node",
+      "config": {
+        "buildCommand": "bun game-hub:build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/proyectos/game-hub/$1"
+    }
+  ]
+}
