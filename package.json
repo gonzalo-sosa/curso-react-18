@@ -13,11 +13,10 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --check .",
     "format:write": "prettier --write .",
+    "game-hub:install": "bun install && bun --filter 'game-hub' install",
     "game-hub:dev": "bun run --filter 'game-hub' dev",
     "game-hub:build": "bun run --filter 'game-hub' build",
-    "game-hub:preview": "bun run --filter 'game-hub' preview",
-    "install:bun": "bun install",
-    "vercel-build": "bun run install:bun && bun run game-hub:build"
+    "game-hub:preview": "bun run --filter 'game-hub' preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "installCommand": "bun install",
   "builds": [
     {
       "src": "proyectos/game-hub/package.json",
-      "use": "@vercel/node",
+      "use": "@vercel/bun",
       "config": {
-
-        "buildCommand": "bun game-hub:build"
+        "buildCommand": "bun game-hub:build",
+        "outputDirectory": "dist"
       }
     }
   ],
@@ -16,5 +15,6 @@
       "src": "/(.*)",
       "dest": "/proyectos/game-hub/$1"
     }
-  ]
+  ],
+  "installCommand": "bun game-hub:install"
 }
