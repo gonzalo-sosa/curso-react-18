@@ -19,11 +19,14 @@ const SortSelector = ({
   selectedSortOrder,
   onSelectSortOrder,
 }: SortSelectorProps) => {
+  const currentSortOrder = sortOrders.find(
+    (order) => order.value === selectedSortOrder,
+  );
+
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        Order by:{' '}
-        {sortOrders.find((order) => order.value === selectedSortOrder)?.label}
+        Order by: {currentSortOrder?.label || 'Relevance'}
       </MenuButton>
       <MenuList>
         {sortOrders.map((order) => (
