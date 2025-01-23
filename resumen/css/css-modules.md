@@ -11,7 +11,7 @@ Utilizar estilos de css de forma vanilla en proyectos de react puede traer confl
 import styles from "./[nombre-componente].module.css";
 ```
 
-- Luego se debe de utilizar la clase de css con la siguiente sintaxis: `className={styles.[nombre-clase]}`
+- Luego se debe de utilizar la clase de css con la siguiente sintaxis: `className={styles.["nombre-clase"]}`
 
 ```tsx
 <div className={styles.container}></div>

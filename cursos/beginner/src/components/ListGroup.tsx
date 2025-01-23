@@ -1,12 +1,5 @@
 import { useState } from 'react';
 
-type Props = {
-  heading: string;
-  items: string[];
-  activeItem?: number;
-  onSelectItem?: (item: string) => void;
-};
-
 // const handleMouseOver = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
 //   e.currentTarget.classList.add("active");
 // };
@@ -14,6 +7,13 @@ type Props = {
 // const handleMouseOut = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
 //   e.currentTarget.classList.remove("active");
 // };
+
+type Props = {
+  heading: string;
+  items: string[];
+  activeItem?: number;
+  onSelectItem?: (item: string) => void;
+};
 
 const getMessage = (items: string[]) =>
   items.length === 0 && <p>Please add an item</p>;

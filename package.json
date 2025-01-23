@@ -3,7 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "workspaces": [
-    "proyectos/*"
+    "cursos/*"
   ],
   "scripts": {
     "dev": "bun run --filter '*' dev",

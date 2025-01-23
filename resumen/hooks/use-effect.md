@@ -12,7 +12,7 @@ El `useEffect` Hook se utiliza para realizar acciones después de que se haya r
 
 ```tsx
 function App() {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLInputElement>(null);
 
   // afterRender
   useEffect(() => {
@@ -22,7 +22,7 @@ function App() {
     }
   }, []);
 
-  return <div></div>;
+  return <input ref={ref} />;
 }
 ```
 

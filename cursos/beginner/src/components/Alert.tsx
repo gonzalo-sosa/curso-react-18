@@ -11,7 +11,7 @@ type Props = {
     | 'light'
     | 'dark';
   children?: ReactNode;
-  onClose: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClose: (e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
 };
 
 const Alert = ({ color = 'primary', children, onClose }: Props) => {
