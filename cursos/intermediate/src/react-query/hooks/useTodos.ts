@@ -1,13 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { CACHE_KEY_TODOS } from '../constants';
 import { Todo } from '../models/Todo';
-
-async function fetchTodos() {
-  return axios
-    .get<Todo[]>('https://jsonplaceholder.typicode.com/todos')
-    .then((res) => res.data);
-}
+import todoService from '../services/todoService';
 
 export default function () {
   const {
@@ -16,7 +10,7 @@ export default function () {
     isLoading,
   } = useQuery<Todo[], Error>({
     queryKey: [CACHE_KEY_TODOS],
-    queryFn: fetchTodos,
+    queryFn: todoService.getAll,
     staleTime: 10 * 1000,
   });
 
