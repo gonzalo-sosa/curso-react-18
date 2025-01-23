@@ -19,3 +19,8 @@ html {
   padding: 0;
   margin: 0;
 }
+
+#root {
+  padding-block: 0.75rem;
+  padding-inline: 1.25rem;
+}
