@@ -11,5 +11,4 @@ dist
 package.json
 tsconfig.*
 *.config.*
-*.md
 vercel.json
