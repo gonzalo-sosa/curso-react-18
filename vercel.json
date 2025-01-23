@@ -6,10 +6,10 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/proyectos/game-hub/$1"
+      "dest": "/cursos/game-hub/$1"
     }
   ],
   "installCommand": "bun game-hub:install",
   "buildCommand": "bun game-hub:build",
-  "outputDirectory": "proyectos/game-hub/dist"
+  "outputDirectory": "cursos/game-hub/dist"
 }
