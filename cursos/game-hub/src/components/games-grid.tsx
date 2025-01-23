@@ -5,7 +5,7 @@ import GameCardContainer from './game-card-container';
 import useGames from '@/hooks/useGames';
 import { GameQuery } from '@/types/query';
 
-const MAX_SKELETONS_TO_SHOW = 6;
+const MAX_SKELETONS_TO_SHOW = 8;
 
 interface GamesGridProps {
   gameQuery: GameQuery;
