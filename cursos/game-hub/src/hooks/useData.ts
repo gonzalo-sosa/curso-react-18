@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { create } from '@/services/http-service';
 
 const useData = <T>(
-  service: ReturnType<typeof create>,
+  service: ReturnType<typeof create<ApiResponse<T>>>,
   dependencies: unknown[],
 ) => {
   const [data, setData] = useState<T[]>([]);
@@ -14,7 +14,7 @@ const useData = <T>(
   useEffect(
     () => {
       setIsLoading(true);
-      const { response, cancel } = service.getAll<ApiResponse<T>>();
+      const { response, cancel } = service.getAll();
 
       response
         .then(({ results }) => {
