@@ -1,3 +1,10 @@
+export interface ParentPlatform {
+  id: number;
+  name: string;
+  slug: string;
+  platforms: Platform[];
+}
+
 export interface Platform {
   id: number;
   name: string;
