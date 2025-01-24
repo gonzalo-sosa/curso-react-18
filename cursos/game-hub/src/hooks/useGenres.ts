@@ -1,7 +1,7 @@
 // import { Genre } from '@/types/genre';
 // import genresService from '@/services/genres-service';
 // import useData from './useData';
-// import genres from '@/data/genres';
+import genres from '@/data/genres';
 
 import genresService from '@/services/genres-service';
 import { ApiResponse } from '@/types/api';
@@ -16,6 +16,12 @@ const useGenres = () =>
     queryKey: ['genres'],
     queryFn: () => genresService.getAll().response,
     staleTime: Infinity, // para evitar un fetch por data nueva
+    initialData: {
+      count: genres.length,
+      previous: null,
+      next: null,
+      results: genres,
+    },
     retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
