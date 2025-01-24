@@ -4,22 +4,25 @@ import { BsChevronDown } from 'react-icons/bs';
 import { ParentPlatform } from '@/types/platform';
 
 interface PlatformSelectorProps {
-  selectedPlatform: ParentPlatform | null;
+  selectedPlatformId?: ParentPlatform['id'];
   onSelectPlatform: (platform: ParentPlatform | null) => void;
 }
 
 const PlatformSelector = ({
-  selectedPlatform,
+  selectedPlatformId,
   onSelectPlatform,
 }: PlatformSelectorProps) => {
   const { data, error } = usePlatforms();
+  const selectedPlatformName = data.results.find(
+    (p) => p.id === selectedPlatformId,
+  )?.name;
 
   if (error) return null;
 
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {selectedPlatform?.name || 'Platforms'}
+        {selectedPlatformName || 'Platforms'}
       </MenuButton>
       <MenuList>
         {data?.results.map((platform) => (
