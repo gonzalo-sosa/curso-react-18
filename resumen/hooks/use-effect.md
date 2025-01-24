@@ -61,8 +61,8 @@ function App() {
 El efecto se ejecuta cuando el componente se desmonta. Puede ser necesario en casos como cuando se desmonta el componente de un formulario o cuando se desmonta un componente de un hook de react.
 
 ```tsx
-const connect = () => console.log("Connecting...");
-const disconnect = () => console.log("Disconnecting...");
+const connect = () => console.log('Connecting...');
+const disconnect = () => console.log('Disconnecting...');
 
 function App() {
   useEffect(() => {
@@ -112,7 +112,7 @@ function App() {
         const products = await fetchProducts({ signal: controller.signal });
         setProducts(products);
       } catch (error) {
-        if (error.name === "AbortError") {
+        if (error.name === 'AbortError') {
           return;
         }
         setError(error.message);
@@ -148,7 +148,7 @@ function App() {
         setProducts(products);
         setIsLoading(false);
       } catch (error) {
-        if (error.name === "AbortError") {
+        if (error.name === 'AbortError') {
           return;
         }
         setError(error.message);
