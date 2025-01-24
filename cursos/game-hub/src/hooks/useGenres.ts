@@ -15,13 +15,13 @@ const useGenres = () =>
   useQuery<ApiResponse<Genre>, Error>({
     queryKey: ['genres'],
     queryFn: () => genresService.getAll().response,
-    staleTime: Infinity, // para evitar un fetch por data nueva
     initialData: {
       count: genres.length,
       previous: null,
       next: null,
       results: genres,
     },
+    staleTime: Infinity, // para evitar un fetch por data nueva
     retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
