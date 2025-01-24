@@ -1,9 +1,9 @@
 import { Genre } from './genre';
-import { Platform } from './platform';
+import { ParentPlatform } from './platform';
 
 export interface GameQuery {
   genres: Genre | null;
-  parent_platforms: Platform | null;
+  parent_platforms: ParentPlatform | null;
   ordering: string;
   search: string;
 }
