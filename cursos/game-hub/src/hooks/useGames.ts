@@ -1,8 +1,8 @@
+import { ApiResponse } from '@/types/api';
 import { Game } from '@/types/games';
 import gamesService from '@/services/games-service';
 import { GameQuery } from '@/types/query';
-import { useQuery } from '@tanstack/react-query';
-import { ApiResponse } from '@/types/api';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 // const useGames = (gameQuery: GameQuery) => {
 //   const urlParams = new URLSearchParams();
@@ -27,10 +27,22 @@ function toURLParams(gameQuery: GameQuery) {
   return urlParams;
 }
 
+// const useGames = (gameQuery: GameQuery) =>
+//   useQuery<ApiResponse<Game>, Error>({
+//     queryKey: ['games', gameQuery],
+//     queryFn: () => gamesService(toURLParams(gameQuery)).getAll().response,
+//   });
+
 const useGames = (gameQuery: GameQuery) =>
-  useQuery<ApiResponse<Game>, Error>({
+  useInfiniteQuery<ApiResponse<Game>, Error>({
     queryKey: ['games', gameQuery],
-    queryFn: () => gamesService(toURLParams(gameQuery)).getAll().response,
+    queryFn: ({ pageParam = 1 }) =>
+      gamesService(toURLParams({ ...gameQuery, page: pageParam })).getAll()
+        .response,
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
+    refetchOnWindowFocus: false,
   });
 
 export default useGames;

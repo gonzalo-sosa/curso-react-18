@@ -6,4 +6,5 @@ export interface GameQuery {
   parent_platforms: ParentPlatform | null;
   ordering: string;
   search: string;
+  page?: number;
 }
