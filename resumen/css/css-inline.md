@@ -4,11 +4,7 @@ CSS en línea es el CSS que se incluye directamente en el atributo "style" en el
 
 ```tsx
 function App() {
-  return (
-    <div style={{ color: "red" }}>
-      Container
-    </div>
-  );
+  return <div style={{ color: 'red' }}>Container</div>;
 }
 ```
 

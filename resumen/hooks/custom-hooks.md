@@ -1,6 +1,6 @@
 # Custom Hooks
 
-Los Custom Hooks son funciones que se utilizan para crear hooks personalizados. 
+Los Custom Hooks son funciones que se utilizan para crear hooks personalizados.
 
 ```tsx
 function useProducts(deps?: unknown[]) {
@@ -10,7 +10,7 @@ function useProducts(deps?: unknown[]) {
 
   useEffect(() => {
     const { response, abort } = productService.getAll<string[]>();
-    
+
     response.then((products) => {
       setProducts(products)
       setIsLoading(false);
@@ -18,7 +18,7 @@ function useProducts(deps?: unknown[]) {
     .catch((error) => {
       if(error.name === 'AbortError') return;
       setError(error.message)
-      setIsLoading(false);  
+      setIsLoading(false);
     });
 
     return () => abort();
@@ -40,11 +40,11 @@ function App() {
     return <p className="text-danger">{error}</p>;
   }
 
-  if(isLoading) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
-  if(!products.length) {
+  if (!products.length) {
     return <p>No products available</p>;
   }
 

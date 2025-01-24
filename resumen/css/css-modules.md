@@ -8,7 +8,7 @@ Utilizar estilos de css de forma vanilla en proyectos de react puede traer confl
 - Luego en el componente de React se debe de importar el archivo de estilos con la siguiente sintaxis: `import styles from "./[nombre-componente].module.css";`
 
 ```tsx
-import styles from "./[nombre-componente].module.css";
+import styles from './[nombre-componente].module.css';
 ```
 
 - Luego se debe de utilizar la clase de css con la siguiente sintaxis: `className={styles.["nombre-clase"]}`
@@ -38,7 +38,7 @@ import styles from "./[nombre-componente].module.css";
 o
 
 ```tsx
-<div className={[styles.container, styles.container2].join(" ")}></div>
+<div className={[styles.container, styles.container2].join(' ')}></div>
 ```
 
 - La estructura recomendada para los archivos es la siguiente:

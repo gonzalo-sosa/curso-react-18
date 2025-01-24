@@ -17,7 +17,7 @@ npm install --save-dev @types/styled-components
 ### Uso
 
 ```tsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Container = styled.div`
   background-color: red;
@@ -38,14 +38,14 @@ const App = () => {
 Además, estos componentes pueden recibir props como cualquier otro componente de react
 
 ```tsx
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ContainerProps {
   active: boolean;
 }
 
 const Container = styled.div<ContainerProps>`
-  background-color: ${(props) => (props.active ? "green" : "red")};
+  background-color: ${(props) => (props.active ? 'green' : 'red')};
   color: white;
   font-size: 20px;
   padding: 10px;

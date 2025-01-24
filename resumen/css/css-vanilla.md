@@ -4,10 +4,10 @@ CSS Vanilla es el CSS sin frameworks o bibliotecas.
 
 ```bash
 app
-│ 
+│
 ├── src/
 │   ├── components/
-│   │   └── [Component]/           
+│   │   └── [Component]/
 │   │       └── [Component].css
 │   │       └── [Component].tsx
 ```

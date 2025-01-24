@@ -11,7 +11,7 @@ npm install react-icons
 ## Uso
 
 ```tsx
-import { BsFillCalendarFill } from "react-icons/bs";
+import { BsFillCalendarFill } from 'react-icons/bs';
 
 function App() {
   return <BsFillCalendarFill color="red" size="40" />;
