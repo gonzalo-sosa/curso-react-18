@@ -10,24 +10,25 @@ const basicFetch = <T>(
     return res.json() as T;
   });
 
-class HttpService {
+class HttpService<T> {
   constructor(public endpoint: string) {}
 
-  getAll<T>() {
+  getAll = () => {
     const controller = new AbortController();
 
     const response = basicFetch<T>(
       this.endpoint,
       {
+        method: 'GET',
         signal: controller.signal,
       },
       `Failed to fetch ${this.endpoint}`,
     );
 
     return { response, cancel: () => controller.abort() };
-  }
+  };
 
-  create<T extends { id: string | number }>(entity: T) {
+  create = <T extends { id: string | number }>(entity: T) => {
     return basicFetch<T>(
       this.endpoint,
       {
@@ -36,9 +37,9 @@ class HttpService {
       },
       `Failed to create ${entity.id}`,
     );
-  }
+  };
 
-  delete(id: string | number) {
+  delete = (id: string | number) => {
     return basicFetch(
       this.endpoint + `/${id}`,
       {
@@ -46,9 +47,9 @@ class HttpService {
       },
       `Failed to delete ${id}`,
     );
-  }
+  };
 
-  update<T extends { id: string | number }>(entity: T) {
+  update = <T extends { id: string | number }>(entity: T) => {
     return basicFetch(
       this.endpoint + `/${entity.id}`,
       {
@@ -57,7 +58,7 @@ class HttpService {
       },
       `Failed to update ${entity.id}`,
     );
-  }
+  };
 }
 
-export const create = (endpoint: string) => new HttpService(endpoint);
+export const create = <T>(endpoint: string) => new HttpService<T>(endpoint);
