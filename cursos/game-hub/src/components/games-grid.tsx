@@ -12,10 +12,10 @@ interface GamesGridProps {
 }
 
 const GamesGrid = ({ gameQuery }: GamesGridProps) => {
-  const { data: games, error, isLoading } = useGames(gameQuery);
+  const { data, error, isLoading } = useGames(gameQuery);
 
-  if (error) return <Text>{error}</Text>;
-  if (!isLoading && games.length === 0) return <Text>No games found</Text>;
+  if (error) return <Text>{error.message}</Text>;
+  if (!isLoading && data.count === 0) return <Text>No games found</Text>;
 
   const skeletons = new Array(MAX_SKELETONS_TO_SHOW)
     .fill(0)
@@ -34,7 +34,7 @@ const GamesGrid = ({ gameQuery }: GamesGridProps) => {
             <GameCardSkeleton key={`skeleton-${skeleton}`} />
           </GameCardContainer>
         ))}
-      {games.map((game) => (
+      {data?.results.map((game) => (
         <GameCardContainer key={`container-${game.id}`}>
           <GameCard key={game.id} {...game} />
         </GameCardContainer>
