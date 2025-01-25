@@ -7,6 +7,7 @@ import genresService from '@/services/genres-service';
 import { ApiResponse } from '@/types/api';
 import { Genre } from '@/types/genre';
 import { useQuery } from '@tanstack/react-query';
+import ms from 'ms';
 
 // const useGenres = () => useData<Genre>(genresService, []);
 // const useGenres = () => ({ data: genres, error: null, isLoading: false });
@@ -21,7 +22,7 @@ const useGenres = () =>
       next: null,
       results: genres,
     },
-    staleTime: Infinity, // para evitar un fetch por data nueva
+    staleTime: ms('24h'),
     retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

@@ -7,6 +7,7 @@ import platformsService from '@/services/platforms-service';
 import { ApiResponse } from '@/types/api';
 import { ParentPlatform } from '@/types/platform';
 import { useQuery } from '@tanstack/react-query';
+import ms from 'ms';
 
 // const usePlatforms = () => useData<Platform>(platformsService, []);
 // const usePlatforms = () => ({
@@ -25,7 +26,7 @@ const usePlatforms = () =>
       next: null,
       results: parent_platforms as ParentPlatform[],
     },
-    staleTime: Infinity,
+    staleTime: ms('24h'),
     retry: 1,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
