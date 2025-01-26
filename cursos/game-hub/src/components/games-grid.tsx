@@ -3,19 +3,13 @@ import GameCard from './game-card';
 import GameCardSkeleton from './game-card-skeleton';
 import GameCardContainer from './game-card-container';
 import useGames from '@/hooks/useGames';
-import { GameQuery } from '@/types/query';
 import { Fragment } from 'react/jsx-runtime';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const MAX_SKELETONS_TO_SHOW = 8;
 
-interface GamesGridProps {
-  gameQuery: GameQuery;
-}
-
-const GamesGrid = ({ gameQuery }: GamesGridProps) => {
-  const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useGames(gameQuery);
+const GamesGrid = () => {
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
 
   if (error) return <Text>{error.message}</Text>;
 
