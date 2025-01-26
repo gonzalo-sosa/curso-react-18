@@ -12,8 +12,11 @@
 //   TasksList,
 // } from './state-management/react-context/Tasks';
 
-import TaskList from './state-management/zustand/Tasks/TasksList';
-import LoginStatus from './state-management/zustand/User/LoginStatus';
+import { RouterProvider } from 'react-router-dom';
+import router from './routing/routes';
+
+// import TaskList from './state-management/zustand/Tasks/TasksList';
+// import LoginStatus from './state-management/zustand/User/LoginStatus';
 
 function App() {
   return (
@@ -23,10 +26,11 @@ function App() {
     //     <TasksList />
     //   </TasksProvider>
     // </AuthProvider>
-    <>
-      <LoginStatus />
-      <TaskList />
-    </>
+    // <>
+    //   <LoginStatus />
+    //   <TaskList />
+    // </>
+    <RouterProvider router={router}></RouterProvider>
   );
   /* 
   <>
