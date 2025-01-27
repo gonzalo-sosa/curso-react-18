@@ -13,6 +13,21 @@ const basicFetch = <T>(
 class HttpService<T> {
   constructor(public endpoint: string) {}
 
+  get = (id: string | number) => {
+    const controller = new AbortController();
+
+    const response = basicFetch<T>(
+      this.endpoint.replace('?', `${id}?`),
+      {
+        method: 'GET',
+        signal: controller.signal,
+      },
+      `Failed to fetch ${this.endpoint}`,
+    );
+
+    return { response, cancel: () => controller.abort() };
+  };
+
   getAll = () => {
     const controller = new AbortController();
 
