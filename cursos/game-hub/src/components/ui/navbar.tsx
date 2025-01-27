@@ -5,7 +5,7 @@ import SearchInput from '../search-input';
 const NavBar = () => {
   return (
     <HStack padding={'10px'}>
-      <Image src="logo.webp" boxSize={'60px'} />
+      <Image src="/public/logo.webp" boxSize={'60px'} />
       <SearchInput />
       <ColorModeSwitch />
     </HStack>
