@@ -1,3 +1,7 @@
+import { Genre } from './genre';
+import { ParentPlatform } from './platform';
+import { Publisher } from './Publisher';
+
 export interface Game {
   id: number;
   slug: string;
@@ -96,6 +100,8 @@ export interface GameDetails {
   game_series_count: number;
   esrb_rating: EsrbRating;
   platforms: Platform[];
+  genres: Genre[];
+  publishers: Publisher[];
 }
 
 export interface MetacriticPlatform {

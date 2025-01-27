@@ -1,3 +1,4 @@
+import GameAttributes from '@/components/game-attributes';
 import ExpandableText from '@/components/ui/expandable-text';
 import useGame from '@/hooks/useGame';
 import { Box, Heading, Spinner } from '@chakra-ui/react';
@@ -15,6 +16,7 @@ export default function GameDetailPage() {
     <Box padding={5}>
       <Heading marginBottom={3}>{game.name}</Heading>
       <ExpandableText>{game.description_raw}</ExpandableText>
+      <GameAttributes game={game} />
     </Box>
   );
 }
