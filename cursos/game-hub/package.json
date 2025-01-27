@@ -6,7 +6,7 @@
   "scripts": {
     "install": "bun install",
     "dev": "bunx --bun vite",
-    "build:b": "bunx --bun vite build",
+    "build": "bunx --bun vite build",
     "preview": "bunx --bun vite preview"
   },
   "dependencies": {
