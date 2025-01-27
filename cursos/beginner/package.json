@@ -5,7 +5,7 @@
   "type": "module", 
   "scripts": {
     "dev": "bunx --bun vite --port 3000",
-    "build": "bunx --bun vite build",
+    "build": "vite build",
     "preview": "bunx --bun vite preview"
   },
   "dependencies": {
