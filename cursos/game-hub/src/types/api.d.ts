@@ -1,4 +1,4 @@
-export interface ApiResponse<T> {
+export default interface ApiResponse<T> {
   count: number;
   next: null | string;
   previous: null | string;

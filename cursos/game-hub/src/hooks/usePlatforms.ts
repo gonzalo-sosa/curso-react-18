@@ -4,7 +4,7 @@
 
 import parent_platforms from '@/data/parent_platforms';
 import platformsService from '@/services/platforms-service';
-import { ApiResponse } from '@/types/api';
+import ApiResponse from '@/types/api';
 import { ParentPlatform } from '@/types/platform';
 import { useQuery } from '@tanstack/react-query';
 import ms from 'ms';

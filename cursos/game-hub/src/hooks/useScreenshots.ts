@@ -1,8 +1,8 @@
 import config from '@/config';
 import { create } from '@/services/http-service';
-import { ApiResponse } from '@/types/api';
-import { Game } from '@/types/games';
-import { Screenshot } from '@/types/screenshot';
+import ApiResponse from '@/types/api';
+import Game from '@/types/games';
+import Screenshot from '@/types/screenshot';
 import { useQuery } from '@tanstack/react-query';
 
 const screenshotService = (gameId: Game['id']) =>

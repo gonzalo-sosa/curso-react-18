@@ -4,8 +4,8 @@
 import genres from '@/data/genres';
 
 import genresService from '@/services/genres-service';
-import { ApiResponse } from '@/types/api';
-import { Genre } from '@/types/genre';
+import ApiResponse from '@/types/api';
+import Genre from '@/types/genre';
 import { useQuery } from '@tanstack/react-query';
 import ms from 'ms';
 

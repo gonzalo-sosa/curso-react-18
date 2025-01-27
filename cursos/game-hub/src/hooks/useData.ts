@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ApiResponse } from '@/types/api';
+import ApiResponse from '@/types/api';
 import { useEffect, useState } from 'react';
 import { create } from '@/services/http-service';
 
