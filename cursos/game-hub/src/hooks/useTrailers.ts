@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const trailerService = (gameId: Game['id']) =>
   create<ApiResponse<Trailer>>(
-    `https://api.rawg.io/api/games/movies/${gameId}?key=${config.api_key}`,
+    `https://api.rawg.io/api/games/${gameId}/movies?key=${config.api_key}`,
   );
 
 export default function (gameId: Game['id']) {
