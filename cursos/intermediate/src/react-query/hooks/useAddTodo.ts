@@ -11,7 +11,7 @@ export default function ({ onAdd }: { onAdd: () => void }) {
 
     onMutate: (newTodo: NewTodo) => {
       const previousTodos =
-        queryClient.getQueryData<SavedTodo[]>([CACHE_KEY_TODOS]) || [];
+        queryClient.getQueryData<SavedTodo[]>([CACHE_KEY_TODOS]) || []; // anteriores todos
 
       queryClient.setQueryData<NewTodo[]>([CACHE_KEY_TODOS], (todos = []) => [
         newTodo,

@@ -14,5 +14,5 @@ export default function () {
     staleTime: 10 * 1000,
   });
 
-  return { todos, error, isLoading };
+  return { todos: todos?.slice(0, 10), error, isLoading };
 }

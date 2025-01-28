@@ -15,7 +15,8 @@ const PostList = () => {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <>
+    <div id="post-list" className="my-4">
+      <h3>Posts List</h3>
       <select
         onChange={(e) => setUserId(parseInt(e.target.value))}
         value={userId}
@@ -27,13 +28,13 @@ const PostList = () => {
         <option value="3">User 3</option>
       </select>
       <ul className="list-group">
-        {posts?.map((post) => (
+        {posts?.slice(0, 10).map((post) => (
           <li key={post.id} className="list-group-item">
             {post.title}
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

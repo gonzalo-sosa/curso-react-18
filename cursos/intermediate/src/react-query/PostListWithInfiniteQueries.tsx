@@ -21,7 +21,8 @@ const PostListWithInfiniteQueries = ({
   if (error) return <p>{error.message}</p>;
 
   return (
-    <>
+    <div id="infinite-query" className="my-4">
+      <h3>Post List with Infinite Queries</h3>
       <ul className="list-group">
         {data.pages.map((page, index) => (
           <Fragment key={`page-${index}`}>
@@ -40,7 +41,7 @@ const PostListWithInfiniteQueries = ({
       >
         {isFetchingNextPage ? 'Loading...' : 'Load More'}
       </button>
-    </>
+    </div>
   );
 };
 

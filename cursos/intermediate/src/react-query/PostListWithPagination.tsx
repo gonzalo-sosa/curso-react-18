@@ -25,7 +25,8 @@ const PostListWithPagination = ({
   if (error) return <p>{error.message}</p>;
 
   return (
-    <>
+    <div id="pagination" className="my-4">
+      <h3>Posts List with Pagination</h3>
       <ul className="list-group">
         {posts?.map((post) => (
           <li key={post.id} className="list-group-item">
@@ -46,7 +47,7 @@ const PostListWithPagination = ({
       >
         Next
       </button>
-    </>
+    </div>
   );
 };
 

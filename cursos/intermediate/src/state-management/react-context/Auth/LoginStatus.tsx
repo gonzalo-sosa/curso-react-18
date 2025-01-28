@@ -11,7 +11,7 @@ const LoginStatus = () => {
           <span className="mx-2">{user}</span>
           <a
             onClick={() => dispatch({ type: AuthActionTypes.LOGOUT })}
-            href="#"
+            href="#login-status"
           >
             Logout
           </a>
@@ -19,12 +19,13 @@ const LoginStatus = () => {
       </>
     );
   return (
-    <div>
+    <div id="login-status">
+      <h3>Login Status</h3>
       <a
         onClick={() =>
-          dispatch({ type: AuthActionTypes.LOGIN, payload: 'mosh.hamedani' })
+          dispatch({ type: AuthActionTypes.LOGIN, payload: 'gonzalo.sosa' })
         }
-        href="#"
+        href="#login-status"
       >
         Login
       </a>

@@ -8,7 +8,7 @@ const LoginStatus = () => {
       <>
         <div>
           <span className="mx-2">{user}</span>
-          <a onClick={() => logout()} href="#">
+          <a onClick={() => logout()} href="#zustand">
             Logout
           </a>
         </div>
@@ -16,7 +16,8 @@ const LoginStatus = () => {
     );
   return (
     <div>
-      <a onClick={() => login('mosh.hamedani')} href="#">
+      <h3>Login status</h3>
+      <a onClick={() => login('gonzalo.sosa')} href="#zustand">
         Login
       </a>
     </div>

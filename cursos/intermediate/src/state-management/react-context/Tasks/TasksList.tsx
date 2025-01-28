@@ -8,7 +8,8 @@ const TaskList = () => {
   const { tasks, dispatch } = useTasks();
 
   return (
-    <>
+    <div className="my-4">
+      <h3>Task List</h3>
       <button
         onClick={() =>
           dispatch({
@@ -38,7 +39,7 @@ const TaskList = () => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

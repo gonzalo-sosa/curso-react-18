@@ -4,7 +4,8 @@ const TaskList = () => {
   const { tasks, addTask, removeTask } = useTasksStore();
 
   return (
-    <>
+    <div className="my-4">
+      <h3>Task List</h3>
       <button
         onClick={() =>
           addTask({ id: String(Date.now()), title: 'Task ' + Date.now() })
@@ -29,7 +30,7 @@ const TaskList = () => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
