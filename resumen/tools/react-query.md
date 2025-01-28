@@ -3,6 +3,12 @@
 Una librería para controlar la petición de datos y cachear respuestas en aplicaciones de React.
 Es preferible utilizar React Query antes que Redux para el "caching"
 
+## Instalación
+
+```bash
+npm i @tanstack/react-query
+```
+
 ## Características
 
 1. Auto Retries: si la petición falla, se vuelve a enviar una nueva.
@@ -321,4 +327,82 @@ export default function () {
 
   return { todos, error, isLoading };
 }
+```
+
+### Custom Hooks
+
+#### useQuery
+
+Para peticiones del tipo `get`
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+import axios, { AxiosRequestConfig } from 'axios';
+
+async function fetchPosts(config?: AxiosRequestConfig) {
+  return axios
+    .get<Post[]>('https://jsonplaceholder.typicode.com/posts', config)
+    .then((res) => res.data);
+}
+
+const usePosts = () => {
+  return useQuery<Post[], Error>({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+  });
+};
+```
+
+#### useMutation
+
+Para peticiones del tipo `post`, `put`, `delete`, `patch`, es decir, peticiones que "mutan" los datos.
+
+```tsx
+import { useMutation } from '@tanstack/react-query';
+import axios, { AxiosRequestConfig } from 'axios';
+
+async function fetchPosts(config?: AxiosRequestConfig) {
+  return axios
+    .get<Post[]>('https://jsonplaceholder.typicode.com/posts', config)
+    .then((res) => res.data);
+}
+
+const usePosts = () => {
+  return useQuery<Post[], Error>({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+    onError: (error) => {
+      console.error(error);
+    },
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+};
+```
+
+#### useInfiniteQuery
+
+Para peticiones de paginación o scroll infinito(o hasta que terminen los datos)
+
+```tsx
+import { useInfiniteQuery } from '@tanstack/react-query';
+import axios, { AxiosRequestConfig } from 'axios';
+
+async function fetchPosts(config?: AxiosRequestConfig) {
+  return axios
+    .get<Post[]>('https://jsonplaceholder.typicode.com/posts', config)
+    .then((res) => res.data);
+}
+
+const usePosts = () => {
+  return useInfiniteQuery<Post[], Error>({
+    queryKey: ['posts'],
+    queryFn: fetchPosts,
+    getNextPageParam: (lastPage, allPages) => {
+      // lógica para obtener la próxima página, difiere según la api utilizada
+      return lastPage.length > 0 ? allPages.length + 1 : undefined;
+    },
+  });
+};
 ```
