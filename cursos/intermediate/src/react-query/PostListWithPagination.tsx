@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import usePosts from './hooks/usePosts';
+import { usePostsWithPagination } from './hooks/usePosts';
 
 interface PostListWithPaginationProps {
   pageSize?: number;
@@ -9,7 +9,11 @@ const PostListWithPagination = ({
   pageSize = 10,
 }: PostListWithPaginationProps) => {
   const [page, setPage] = useState(1);
-  const { data: posts, error, isLoading } = usePosts({ page, pageSize });
+  const {
+    data: posts,
+    error,
+    isLoading,
+  } = usePostsWithPagination({ page, pageSize });
 
   if (isLoading)
     return (

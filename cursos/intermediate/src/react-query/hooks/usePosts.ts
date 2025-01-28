@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import axios, { AxiosRequestConfig } from 'axios';
 
 interface Post {
@@ -15,43 +15,43 @@ async function fetchPosts(config?: AxiosRequestConfig) {
 }
 
 /* Para PostList sin Pagination */
-// export default function (userId?: number) {
-//   return useQuery<Post[], Error>({
-//     queryKey: userId ? ['users', userId, 'posts'] : ['posts'], // <-- users/1/posts
-//     queryFn: () =>
-//       fetchPosts({
-//         params: { userId },
-//       }),
-//     staleTime: 1 * 60 * 1000, // 1m
-//   });
-// }
+export const usePosts = (userId?: number) => {
+  return useQuery<Post[], Error>({
+    queryKey: userId ? ['users', userId, 'posts'] : ['posts'], // <-- users/1/posts
+    queryFn: () =>
+      fetchPosts({
+        params: { userId },
+      }),
+    staleTime: 1 * 60 * 1000, // 1m
+  });
+};
 
 /* Para PostListWithPagination */
-// type PostQuery = {
-//   page: number;
-//   pageSize: number;
-// };
+type PostQueryP = {
+  page: number;
+  pageSize: number;
+};
 
-// export default function (query: PostQuery) {
-//   return useQuery<Post[], Error>({
-//     queryKey: ['posts', query],
-//     queryFn: () =>
-//       fetchPosts({
-//         params: {
-//           _start: (query.page - 1) * query.pageSize,
-//           _limit: query.pageSize,
-//         },
-//       }),
-//     staleTime: 1 * 60 * 1000, // 1m
-//     keepPreviousData: true,
-//   });
-// }
+export const usePostsWithPagination = (query: PostQueryP) => {
+  return useQuery<Post[], Error>({
+    queryKey: ['posts', query],
+    queryFn: () =>
+      fetchPosts({
+        params: {
+          _start: (query.page - 1) * query.pageSize,
+          _limit: query.pageSize,
+        },
+      }),
+    staleTime: 1 * 60 * 1000, // 1m
+    keepPreviousData: true,
+  });
+};
 
 type PostQuery = {
   pageSize: number;
 };
 
-export default function (query: PostQuery) {
+export const usePostsWithInfiniteQueries = (query: PostQuery) => {
   return useInfiniteQuery<Post[], Error>({
     queryKey: ['posts', query],
     queryFn: ({ pageParam = 1 }) =>
@@ -67,4 +67,4 @@ export default function (query: PostQuery) {
       return lastPage.length > 0 ? allPages.length + 1 : undefined; // only for json placeholder
     },
   });
-}
+};

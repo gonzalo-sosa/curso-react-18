@@ -1,5 +1,5 @@
 import { Fragment } from 'react/jsx-runtime';
-import usePosts from './hooks/usePosts';
+import { usePostsWithInfiniteQueries } from './hooks/usePosts';
 
 interface PostListWithInfiniteQueriesProps {
   pageSize?: number;
@@ -9,7 +9,7 @@ const PostListWithInfiniteQueries = ({
   pageSize = 10,
 }: PostListWithInfiniteQueriesProps) => {
   const { data, error, isLoading, fetchNextPage, isFetchingNextPage } =
-    usePosts({ pageSize });
+    usePostsWithInfiniteQueries({ pageSize });
 
   if (isLoading)
     return (

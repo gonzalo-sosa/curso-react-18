@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import usePosts from './hooks/usePosts';
+import { usePosts } from './hooks/usePosts';
 
 const PostList = () => {
   const [userId, setUserId] = useState<number>();
