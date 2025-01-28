@@ -3,14 +3,14 @@
 ## Instalación
 
 ```bash
-npm i react-router-dom
+npm i react-router-dom@6.10.0
 ```
 
 ## Uso
 
 ### Crear router
 
-Hay dos formas, la primera es la más sencilla utilizando el componente `BrowserRouter` y enviarle las props. La segunda forma es creando el componente pero con las rutas ya creadas utilizando la función `createBrowserRouter`.
+Hay dos formas, la primera es la más sencilla utilizando el componente `BrowserRouter` y crear rutas a través de componentes. La segunda forma (y la más utilizada para aplicaciones grandes) es creando el componente con la función `createBrowserRouter` que permite manejar errores y carga de datos de manera más eficiente.
 
 1. BrowserRouter
 
@@ -79,9 +79,11 @@ const router = createBrowserRouter([
 ]);
 ```
 
+Para acceder a estos parámetros se debe de utilizar el hook [useParams](#custom-hooks).
+
 ### Rutas anidadas
 
-Rutas que se encuentren dentro de otras rutas. Para crear rutas anidadas se debe de crear un componente que se encargue de renderizar la ruta anidada y los componentes que sean hijos de ella. Es importante recalcar que los `paths` no deben de llevar "/" al comienzo ya que el componente entiende que son hijas de otra ruta por lo que agrega la barra de forma automática. Si queremos que un componente sea el que se renderice cuando la ruta sea la misma que el la del padre se debe de indicar con `index: true`.
+Rutas que se encuentren dentro de otras rutas. Para crear rutas anidadas se debe de crear un componente que se encargue de renderizar la ruta anidada y los componentes que sean hijos de ella. Es importante recalcar que los `paths` no deben de llevar "/" al comienzo ya que el componente entiende que son hijas de otra ruta por lo que agrega la barra de forma automática. Si queremos que un componente sea el que se renderice cuando la ruta sea la misma que el la del padre se debe de indicar con `index: true` que es equivalente a `path: '/'`.
 
 ```tsx
 // routes.tsx
@@ -112,7 +114,7 @@ export default router;
 
 ### Outlet
 
-Componente que renderiza las rutas hijas que matcheen con el path de la ruta actual.
+Componente que renderiza las rutas hijas que coinciden con el path de la ruta actual.
 
 ```tsx
 // Layout.tsx
@@ -124,7 +126,7 @@ const Layout = () => {
       <NavBar />
       <div id="main">
         <Outlet />{' '}
-        {/* <-- Outlet que renderiza las rutas hijas que matcheen con el path de la ruta actual */}
+        {/* <-- Outlet que renderiza las rutas hijas que coinciden con el path de la ruta actual */}
       </div>
     </>
   );
@@ -161,7 +163,7 @@ const router = createBrowserRouter([
 ]);
 ```
 
-Para proteger una ruta se debe de crear un componente que se encargue de renderizar la ruta protegida y los componentes que sean hijos de ella. Para esto, debemos de controlar los permisos del usuario y si no tiene permisos se debe de redirigir a la ruta de login. Se utiliza el componente `Navigate` para que la función permanezca "pura" (que no se ejecuten funciones inesperadas).
+Para proteger una ruta se debe de crear un componente que se encargue de renderizar la ruta protegida y los componentes que sean hijos de ella. Para esto, debemos de controlar los permisos del usuario y si no tiene permisos se debe de redirigir a la ruta de login. Se utiliza el componente `Navigate` que redirige de manera automática una vex que se renderiza, de esta forma el componente permanece "puro" (que no se ejecuten funciones inesperadas).
 
 ```tsx
 // PrivateRoutes.tsx
@@ -203,7 +205,14 @@ export default function ErrorPage() {
   const error = useRouteError();
 
   if (isRouteErrorResponse(error)) {
-    return <h1>Página no válida</h1>;
+    if (error.status === 404) {
+      return <h1>Página no encontrada</h1>;
+    }
+    return (
+      <h1>
+        Error {error.status}: {error.statusText}
+      </h1>
+    );
   }
 
   return <h1>Ocurrió un error inesperado</h1>;
@@ -269,15 +278,161 @@ export default function Login() {
 ```tsx
 export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('q');
+  const sort = searchParams.get('sort');
 
   return (
-    <search>
+    <div>
       <input
         type="text"
-        value={searchParams.get('q') || ''}
+        value={query || ''}
         onChange={(e) => setSearchParams({ q: e.target.value })}
       />
-    </search>
+      <p>Sort: {sort}</p>
+    </div>
+  );
+}
+```
+
+5. useRoutes: permite crear rutas utilizando objetos en lugar de componentes
+
+```tsx
+// routes.tsx
+import { useRoutes } from 'react-router-dom';
+
+const routes = [
+  { path: '/', element: <Home /> },
+  { path: '/about', element: <About /> },
+  { path: '/users/:userId', element: <UserProfile /> },
+];
+
+export default function App() {
+  const element = useRoutes(routes);
+  return element;
+}
+```
+
+6. useOutlet: retorna el elemento de la ruta hija que sea igual a la ruta actual
+
+```tsx
+import { useOutlet } from 'react-router-dom';
+
+export default function Dashboard() {
+  const outlet = useOutlet();
+
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {outlet || <p>No nested route matched.</p>}
+    </div>
+  );
+}
+```
+
+7. useResolvedPath: transforma una ruta relativa a una ruta absoluta basada en la ubicación actual
+
+```tsx
+import { useResolvedPath } from 'react-router-dom';
+
+function ResolvedPath() {
+  const path = useResolvedPath('about');
+
+  return <p>Resolved Path: {path.pathname}</p>; // <-- Resolved Path: /about
+}
+```
+
+8. useMatch: valida si la URL actual coincide con la ruta proporcionada
+
+```tsx
+import { useMatch } from 'react-router-dom';
+
+export default function AboutLink() {
+  const match = useMatch('/about');
+
+  return (
+    <p>
+      {match ? 'You are on the About page' : 'You are not on the About page'}
+    </p>
+  );
+}
+```
+
+9. useNavigationType: retorna el tipo de navegación utilizada (por ejemplo, "pop", "push", "replace")
+
+```tsx
+import { useNavigationType } from 'react-router-dom';
+
+function NavigationType() {
+  const type = useNavigationType();
+
+  return <p>Navigation Type: {type}</p>;
+}
+```
+
+10. useHref: crea una URL basada en la ruta "to" de la ubicación actual
+
+```tsx
+// path: users
+import { useHref } from 'react-router-dom';
+
+function LinkToAbout() {
+  const href = useHref('/about'); // <-- users/about
+
+  return <a href={href}>Go to About</a>;
+}
+```
+
+11. useRouterContext: valida si un componente está en el contexto de react router
+
+```tsx
+import { useInRouterContext } from 'react-router-dom';
+
+function RouterContextCheck() {
+  const isInRouterContext = useInRouterContext();
+
+  return <p>Is in Router Context: {isInRouterContext ? 'Yes' : 'No'}</p>;
+}
+```
+
+12. useOutletContext: permite compartir el contexto entre una ruta padre a las rutas anidadas
+
+```tsx
+import { useOutletContext } from 'react-router-dom';
+
+function NestedComponent() {
+  const context = useOutletContext();
+
+  return <p>Context: {context}</p>;
+}
+
+function ParentComponent() {
+  return (
+    <div>
+      <h1>Parent Component</h1>
+      <Outlet context="Hello from Parent" />
+    </div>
+  );
+}
+```
+
+13. useBlocker: permite bloquear la navegación entre rutas
+
+```tsx
+import { useBlocker } from 'react-router-dom';
+
+export default function Form() {
+  const [isDirty, setIsDirty] = useState(false);
+
+  useBlocker(() => {
+    return !window.confirm(
+      'You have unsaved changes. Are you sure you want to leave?',
+    );
+  }, isDirty); // <-- Se bloquea la navegación si isDirty es true
+
+  return (
+    <form>
+      <input type="text" onChange={() => setIsDirty(true)} />
+    </form>
   );
 }
 ```

@@ -1,7 +1,13 @@
 # React Query
 
 Una librería para controlar la petición de datos y cachear respuestas en aplicaciones de React.
-Es preferible utilizar React Query antes que Redux para el "caching"
+React Query es ideal cuando tu principal necesidad es manejar y cachear datos de API de manera eficiente. A diferencia de Redux, que es un manejador de estado más general, React Query se especializa en la obtención, almacenamiento en caché y sincronización de datos, lo que te permite evitar la sobrecarga de manejo de estado de forma manual.
+React Query optimiza las solicitudes a los servidores al usar la caché de manera eficiente. Por ejemplo, si un componente ya ha solicitado datos y esos datos están en caché, React Query evitará hacer una nueva solicitud al servidor, lo que mejora el rendimiento de la aplicación y reduce la carga del backend.
+
+Casos de uso:
+
+- Aplicaciones con grandes cantidades de datos que deben ser sincronizadas con el servidor.
+- Aplicaciones con múltiples componentes que dependen de los mismos datos, evitando la redundancia de solicitudes HTTP.
 
 ## Instalación
 
@@ -75,6 +81,9 @@ export default TodoList;
 ```
 
 ### Handling Errors
+
+Los errores son devueltos por la query y si están correctamente tipados se puede acceder al mensaje del mismo.
+Por defecto, si un query lanza un error la petición se volverá a intentar por 3 veces, es decir, un total de 4 peticiones pero esto es configurable tanto en el `query client` como en el hook `useQuery`
 
 ```tsx
 const TodoList = () => {
@@ -213,7 +222,7 @@ createRoot(document.getElementById('root')!).render(
 
 * Cuando una `query` tiene 0 observadores, es decir, no hay componentes que la utilicen, la `query` se vuelve <b>inactiva</b> lo que la convierte en la próxima víctima del `garbage collector` que la retirará de la caché luego de que pasen 5 minutos(valor por defecto: 300000 ms).
 
-### Customizing query options
+### Personalizar las opciones de React Query
 
 1. Retry: modificar las cantidad de veces que se vuelve a realizar la petición si la primera vez falla.
 
@@ -230,7 +239,7 @@ const queryClient = new QueryClient({
 });
 ```
 
-2. cacheTime: tiempo máximo de la caché. Si la `query` es inactiva los datos se quitaran de la cache una vez pasado el tiempo especificado.
+2. cacheTime: tiempo máximo que los datos de una `query` permanece en la caché antes de ser borrados. Si la `query` es inactiva los datos se quitaran de la cache una vez pasado el tiempo especificado.
 
 - El valor por defecto es `300000` ms (5 minutos)
 
@@ -329,6 +338,33 @@ export default function () {
 }
 ```
 
+7. keepPreviousData
+
+- El valor por defecto es `true` por lo al mantener una petición en la caché se mantienen los datos anteriores
+
+```tsx
+// main.tsx
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      keepPreviousData: true,
+    },
+  },
+});
+```
+
+```tsx
+import { useQuery } from '@tanstack/react-query';
+
+const TodoList = () => {
+  const { data: todos, error } = useQuery<Todo[], Error>({
+    queryKey: ['todos'],
+    queryFn: fetchTodos,
+    keepPreviousData: true,
+  });
+};
+```
+
 ### Custom Hooks
 
 #### useQuery
@@ -359,25 +395,30 @@ Para peticiones del tipo `post`, `put`, `delete`, `patch`, es decir, peticiones 
 
 ```tsx
 import { useMutation } from '@tanstack/react-query';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
-async function fetchPosts(config?: AxiosRequestConfig) {
-  return axios
-    .get<Post[]>('https://jsonplaceholder.typicode.com/posts', config)
-    .then((res) => res.data);
-}
+const createTodo = async (todo: { title: string }) => {
+  return axios.post('https://jsonplaceholder.typicode.com/todos', todo);
+};
 
-const usePosts = () => {
-  return useQuery<Post[], Error>({
-    queryKey: ['posts'],
-    queryFn: fetchPosts,
-    onError: (error) => {
-      console.error(error);
-    },
-    onSuccess: (data) => {
-      console.log(data);
-    },
-  });
+const TodoForm = () => {
+  const { mutate, isLoading, error, isSuccess } = useMutation(createTodo);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newTodo = { title: 'New Todo' };
+    mutate(newTodo);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? 'Saving...' : 'Create Todo'}
+      </button>
+      {isSuccess && <p>Todo created successfully!</p>}
+      {error && <p>Error creating todo: {error.message}</p>}
+    </form>
+  );
 };
 ```
 
@@ -405,4 +446,21 @@ const usePosts = () => {
     },
   });
 };
+```
+
+```tsx
+export default function Todos(){
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = usePosts();
+
+  return <List>
+    {data?.pages.map((page, index) => (
+      <Fragment key={`page-${index}`}>
+        {page.map((todo) => (
+          <Todo key={todo.id} todo={todo} />
+      ))}
+    ))}
+
+    {hasNextPage && <button onClick={fetchNextPage}>Load More</button>}
+  </List>
+}
 ```
